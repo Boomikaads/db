@@ -54,7 +54,7 @@
             border-radius: 5px;
             background-color: #fafafa;
         }
-        .article h2 {
+        .article h2, .article h3 {
             margin: 0 0 10px;
             color: #333;
         }
@@ -90,15 +90,24 @@
                         data.forEach(article => {
                             const articleDiv = document.createElement('div');
                             articleDiv.classList.add('article');
-                            const topic= document.createElement('h1');
+
+                            // Display Article Number and Topic
+                            const articleNumber = document.createElement('h3');
+                            articleNumber.textContent = `Article Number: ${article.article_number}`;
+                            articleDiv.appendChild(articleNumber);
+
+                            const topic = document.createElement('h3');
+                            topic.textContent = `Topic: ${article.topic}`;
+                            articleDiv.appendChild(topic);
+
                             const title = document.createElement('h2');
                             title.textContent = article.title;
+                            articleDiv.appendChild(title);
 
                             const content = document.createElement('p');
                             content.innerHTML = highlightText(article.content, article.highlights);
-                            articleDiv.appendChild(topic);
-                            articleDiv.appendChild(title);
                             articleDiv.appendChild(content);
+
                             resultsDiv.appendChild(articleDiv);
                         });
                     }
